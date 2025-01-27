@@ -1,5 +1,6 @@
 package com.riwi.Authentication.models.entities;
 
+import com.riwi.Authentication.utils.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
