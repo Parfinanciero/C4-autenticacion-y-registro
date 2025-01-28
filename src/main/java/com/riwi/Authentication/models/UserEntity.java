@@ -1,4 +1,4 @@
-package com.riwi.Authentication.models.entities;
+package com.riwi.Authentication.models;
 
 import com.riwi.Authentication.utils.enums.Role;
 import jakarta.persistence.*;
@@ -9,10 +9,6 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "users")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class UserEntity {
 
     @Id
