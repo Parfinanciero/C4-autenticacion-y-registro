@@ -28,6 +28,7 @@ public class UserImpl implements IUService {
                 usuario.setName(userRequest.getName());
                 usuario.setLastname(userRequest.getLastname());
                 usuario.setEmail(userRequest.getEmail());
+                usuario.setAccess_token(userRequest.getAccess_token());
                 usuario.setRole(userRequest.getRole());
                 //.password(passwordEncoder.encode(request.getPassword())) // agregar encriptacion de contraseña
 
@@ -58,10 +59,16 @@ public class UserImpl implements IUService {
         if(userRequest.getEmail()!= null){
             usuario.setEmail(userRequest.getEmail());
         }
+
+        if(userRequest.getAccess_token()!=null){
+            usuario.setAccess_token(userRequest.getAccess_token());
+        }
+
         if(userRequest.getRole()!= null){
             usuario.setRole(userRequest.getRole());
 
         }
+
 
 //        if(userRequest.getPassword()!=null){
 //            usuario.setPassword(passwordEncoder.encode(userRequest.getPassword())); //passwordENCODER
@@ -80,6 +87,7 @@ public class UserImpl implements IUService {
         usuario.setName(userRequest.getName());
         usuario.setLastname(userRequest.getLastname());
         usuario.setEmail(userRequest.getEmail());
+        usuario.setAccess_token(userRequest.getAccess_token());
         usuario.setRole(userRequest.getRole());
 
         //usuario.setPassword(passwordEncoder.encode(request.getPassword())); // hasear
@@ -97,6 +105,7 @@ public class UserImpl implements IUService {
                     userResponse.setName(usuario.getName());
                     userResponse.setLastname(usuario.getLastname());
                     userResponse.setEmail(usuario.getEmail());
+                    userResponse.setAccess_token(usuario.getAccess_token());
                     userResponse.setRole(usuario.getRole());
                     return userResponse;
                 }).collect(Collectors.toList());
@@ -120,6 +129,7 @@ public class UserImpl implements IUService {
         userResponse.setName(usuario.getName());
         userResponse.setLastname(usuario.getLastname());
         userResponse.setEmail(usuario.getEmail());
+        userResponse.setAccess_token(usuario.getAccess_token());
         userResponse.setRole(usuario.getRole());
 
         return userResponse;

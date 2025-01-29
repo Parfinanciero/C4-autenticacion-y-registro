@@ -14,6 +14,7 @@ public class UserRequest {
     private String lastname;
     private String password;
     private String email;
+    private String access_token;
     private Role role;
 
     public String getName() {
@@ -56,11 +57,20 @@ public class UserRequest {
         this.role = role;
     }
 
-    public UserRequest(String name, String lastname, String password, String email, Role role) {
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public UserRequest(String name, String lastname, String password, String email, String access_token, Role role) {
         this.name = name;
         this.lastname = lastname;
         this.password = password;
         this.email = email;
+        this.access_token = access_token;
         this.role = role;
     }
 
