@@ -11,8 +11,9 @@ public class UserResponse {
     private Long id; // deberia ir?
     private String name;
     private String lastname;
-    private String password;
+    //private String password;
     private String email;
+    private String access_token;
     private Role role;
 
     public Long getId() {
@@ -39,13 +40,7 @@ public class UserResponse {
         this.lastname = lastname;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getEmail() {
         return email;
@@ -63,12 +58,20 @@ public class UserResponse {
         this.role = role;
     }
 
-    public UserResponse(Long id, String name, String lastname, String password, String email, Role role) {
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public UserResponse(Long id, String name, String lastname, String email, String access_token, Role role) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
-        this.password = password;
         this.email = email;
+        this.access_token = access_token;
         this.role = role;
     }
 
