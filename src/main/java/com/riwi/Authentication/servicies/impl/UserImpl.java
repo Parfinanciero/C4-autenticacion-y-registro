@@ -122,7 +122,7 @@ public class UserImpl implements IUService {
 
         //entidad --> userResponse
         UserEntity usuario= userRepository.findById(id).orElseThrow(
-        //        ()-> new ApiException("El usuario no existe")
+               ()-> new ApiException("El usuario no existe")
         );
 
 
