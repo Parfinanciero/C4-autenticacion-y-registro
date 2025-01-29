@@ -9,13 +9,16 @@ import java.util.List;
 public class ApiException extends RuntimeException {
 
     private HttpStatus status;
-    private List<ErrorDetails> errorDetailList = new ArrayList<>();
+    private List<ErrorDetails> errorDetailList= new ArrayList<>();
 
-    // Constructor corregido
-    public ApiException(HttpStatus status, String message, List<ErrorDetails> errorDetailList) {
+    public ApiException(HttpStatus status, String message,List<ErrorDetails> errorDetailList) {
         super(message);
         this.status = status;
         this.errorDetailList = errorDetailList;
+    }
+
+    public ApiException(String message) {
+        super(message);
     }
 
     // Getters y setters
