@@ -1,5 +1,5 @@
 spring.application.name=Authentication
-server.port=8051
+server.port=
 spring.datasource.url=
 spring.datasource.username=
 spring.datasource.password=
