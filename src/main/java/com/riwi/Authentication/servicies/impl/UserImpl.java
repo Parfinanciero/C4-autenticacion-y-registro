@@ -85,7 +85,7 @@ public class UserImpl implements IUService {
     public void update(UserRequest userRequest, Long id) {
 
         UserEntity usuario=userRepository.findById(id).orElseThrow(
-//                ()-> new ApiException("El usuario no existe")
+               ()-> new ApiException("El usuario no existe")
         );
 
         usuario.setName(userRequest.getName());
@@ -141,4 +141,7 @@ public class UserImpl implements IUService {
 
         return userResponse;
     }
+
+
+
 }
