@@ -134,7 +134,9 @@ public class UserController implements InterfaceUserController {
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content) // Or specific error schema if needed
     })
     public ResponseEntity<List<UserResponse>> readAll() {
+
         return ResponseEntity.ok(iuService.readAll());
+
     }
 
 }
