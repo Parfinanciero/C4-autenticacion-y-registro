@@ -41,7 +41,7 @@ jobs:
         run: |
           set -e  # Detener el script si algún comando falla
 
-          DEPLOY_DIR="/home/admin_jb_3"
+          DEPLOY_DIR="/home/admin_jb_4"
           LOGS_DIR="$DEPLOY_DIR/logs"
           APP_JAR="Bussiness-0.0.1-SNAPSHOT.jar"
 
