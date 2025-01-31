@@ -19,13 +19,53 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      #configuration 1: clona el repositorio en el runner de github actions
       - name: Check out the repository
         uses: actions/checkout@v4
+
+      # configuration 2: configura el entorno de java con JDK17
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+
+      #configuration 3: probar proyecto
       - name: Build and test with Maven
-        run: mvn --batch-mode package
+        run: |
+          mvn clean package
+          ls -l target/*.jar
+
+
+      - name: Initialize SSH and Trust Host
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p ${{ secrets.PORT }} -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          
+          
+      # 5. Configurar la clave SSH para el acceso (agente SSH)
+      - name: Setting up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SERVER_KEY }}
+
+
+      # 6. Desplegar la aplicación en la VPS
+      - name: Deploy to VPS
+        run: |
+          DEPLOY_DIR="/home/admin_jb_3"
+          LOGS_DIR="$DEPLOY_DIR/logs"
+          APP_JAR="Bussiness-0.0.1-SNAPSHOT.jar"
+
+          echo "Matando proceso anterior (si existe)..."
+          ssh -p ${{ secrets.PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "sudo pkill -f $APP_JAR || true"
+          echo "Copiando el nuevo JAR..."
+          scp -P ${{ secrets.PORT }} target/*.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:$DEPLOY_DIR/
+
+          echo "Iniciando la aplicación en segundo plano..."
+          ssh -p ${{ secrets.PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "\
+          nohup java -jar $DEPLOY_DIR/$APP_JAR > $LOGS_DIR/output.log 2>&1 & \
+          "
+
+          echo "Deploy completed"
