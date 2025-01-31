@@ -49,7 +49,9 @@ jobs:
           ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} "mkdir -p $LOGS_DIR"
 
           echo "Matando proceso anterior (si existe)..."
-          ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} "pkill -f $APP_JAR || true"
+          ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} "\
+          pgrep -f $APP_JAR && pkill -f $APP_JAR || echo 'No se encontró el proceso para matar' \
+          "
 
           echo "Copiando el nuevo JAR..."
           scp -P ${{ secrets.SERVER_PORT }} target/*.jar ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:$DEPLOY_DIR/
