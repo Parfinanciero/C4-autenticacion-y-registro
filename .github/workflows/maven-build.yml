@@ -7,6 +7,8 @@ name: Java CI with Maven
 # en esta sección se indica el diparador para el flujo, el cual es una solicitud de grupo que se abre o se crea
 
 on:
+  push:
+    branches: [ "feature/github_action" ]
   pull_request:
     branches:
       - main
