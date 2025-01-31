@@ -1,7 +1,7 @@
 spring.application.name=Authentication
-server.port=
-spring.datasource.url=
-spring.datasource.username=
+server.port=8051
+spring.datasource.url=postgres://CLICK_TO:REVEAL_PASSWORD@serverfinan-parfinanciera.h.aivencloud.com:11270/defaultdb?sslmode=require
+spring.datasource.username=defaultdb
 spring.datasource.password=
 spring.datasource.driver-class-name=org.postgresql.Driver
 
